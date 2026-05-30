@@ -81,7 +81,31 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: linear-gradient(to bottom, #000810, #052030);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  button, 
+  [role="button"],
+  a {
+    cursor: pointer;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 8, 16, 0.8);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(168, 230, 255, 0.2);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 230, 255, 0.4);
   }
 }
 
@@ -117,5 +141,13 @@
   }
   .animate-scan {
     animation: scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  @keyframes progress {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
   }
 }

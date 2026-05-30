@@ -9,12 +9,11 @@ import { StatsSection } from "@/components/stats-section"
 import { DownloadSection } from "@/components/download-section"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
-import { MouseGlow } from "@/components/mouse-glow"
 
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      <MouseGlow />
+
       <Header />
       <HeroSection />
       <FeaturesSection />

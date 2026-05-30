@@ -99,7 +99,7 @@ export function CardsSection() {
   const [cardNumber, setCardNumber] = useState("4888 8888 8888 8888")
   const [cardCvv, setCardCvv] = useState("888")
   const [isFlipped, setIsFlipped] = useState(false)
-  const [cardTexture, setCardTexture] = useState<"circles" | "carbon" | "none">("circles")
+  const [cardTexture, setCardTexture] = useState<"waves" | "carbon" | "circuit" | "hexagons" | "none">("waves")
 
 
   // Gradient presets for live customization
@@ -248,26 +248,56 @@ export function CardsSection() {
                     )}
 
                     {/* Patterns */}
-                    {selectedCard !== "limit" && cardTexture === "circles" && (
-                      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+                    {selectedCard !== "limit" && cardTexture === "waves" && (
+                      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.2]" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                          <pattern id={`circles-${selectedCard}`} x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                          <pattern id={`waves-${selectedCard}`} width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+                            <circle cx="0" cy="0" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                            <circle cx="0" cy="0" r="20" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                            <circle cx="0" cy="0" r="30" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                            <circle cx="0" cy="0" r="40" fill="none" stroke="currentColor" strokeWidth="1.5" />
                           </pattern>
                         </defs>
-                        <rect width="100%" height="100%" fill={`url(#circles-${selectedCard})`} />
+                        <rect width="100%" height="100%" fill={`url(#waves-${selectedCard})`} />
                       </svg>
                     )}
 
                     {selectedCard !== "limit" && cardTexture === "carbon" && (
-                      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.15]" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                          <pattern id={`carbon-${selectedCard}`} width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                            <rect width="5" height="10" fill="currentColor"/>
-                            <rect width="10" height="5" fill="currentColor"/>
+                          <pattern id={`carbon-${selectedCard}`} width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                            <rect width="6" height="12" fill="currentColor"/>
+                            <rect width="12" height="6" fill="currentColor"/>
                           </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill={`url(#carbon-${selectedCard})`} />
+                      </svg>
+                    )}
+
+                    {selectedCard !== "limit" && cardTexture === "circuit" && (
+                      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.15]" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <pattern id={`circuit-${selectedCard}`} width="60" height="60" patternUnits="userSpaceOnUse">
+                            <path d="M15 15 h30 v30 h-30 z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+                            <circle cx="15" cy="15" r="3" fill="currentColor"/>
+                            <circle cx="45" cy="45" r="3" fill="currentColor"/>
+                            <path d="M0 30 h15 M45 30 h15 M30 0 v15 M30 45 v15" stroke="currentColor" strokeWidth="1.5"/>
+                            <path d="M15 45 l-15 15 M45 15 l15 -15" stroke="currentColor" strokeWidth="1.5"/>
+                          </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill={`url(#circuit-${selectedCard})`} />
+                      </svg>
+                    )}
+
+                    {selectedCard !== "limit" && cardTexture === "hexagons" && (
+                      <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.15]" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <pattern id={`hexagons-${selectedCard}`} width="28" height="48.5" patternUnits="userSpaceOnUse">
+                            <path d="M14 0 L28 8 L28 24 L14 32 L0 24 L0 8 Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+                            <path d="M14 48.5 L28 40.5 L28 24 L14 32 L0 24 L0 40.5 Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+                          </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill={`url(#hexagons-${selectedCard})`} />
                       </svg>
                     )}
 
@@ -494,16 +524,18 @@ export function CardsSection() {
                 {/* Texture Selector */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-foreground text-left">Chất liệu & Vân họa tiết</label>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {[
-                      { id: "circles", label: "Vòng sóng" },
+                      { id: "waves", label: "Vòng sóng" },
                       { id: "carbon", label: "Carbon" },
-                      { id: "none", label: "Tối giản" }
+                      { id: "circuit", label: "Mạch" },
+                      { id: "hexagons", label: "Lục giác" },
+                      { id: "none", label: "Trơn" }
                     ].map((pattern) => (
                       <button
                         key={pattern.id}
                         onClick={() => setCardTexture(pattern.id as any)}
-                        className={`flex-1 rounded-lg border py-2 text-xs font-semibold transition-all ${
+                        className={`flex-1 min-w-[70px] rounded-lg border py-2 text-xs font-semibold transition-all ${
                           cardTexture === pattern.id
                             ? "border-neon-cyan bg-neon-cyan/10 text-neon-cyan"
                             : "border-glass-border text-muted-foreground hover:text-foreground"

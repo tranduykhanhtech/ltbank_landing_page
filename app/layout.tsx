@@ -12,6 +12,28 @@ export const metadata: Metadata = {
   title: 'LTBank | Ngân hàng số thế hệ mới',
   description: 'Hệ thống lõi ngân hàng mô phỏng. Tối giản, an toàn và độc đáo. Trải nghiệm mượt mà trên cả iOS và Android.',
   generator: 'v0.app',
+  openGraph: {
+    title: 'LTBank | Ngân hàng số thế hệ mới',
+    description: 'Hệ thống lõi ngân hàng mô phỏng. Tối giản, an toàn và độc đáo.',
+    url: 'https://ltbank.com',
+    siteName: 'LTBank',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'LTBank - Ngân hàng số thế hệ mới',
+      },
+    ],
+    locale: 'vi_VN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LTBank | Ngân hàng số thế hệ mới',
+    description: 'Hệ thống lõi ngân hàng mô phỏng. Tối giản, an toàn và độc đáo.',
+    images: ['/og-image.jpg'],
+  },
 }
 
 export const viewport: Viewport = {
@@ -19,6 +41,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
 }
+
+import { SplashScreen } from '@/components/splash-screen'
 
 export default function RootLayout({
   children,
@@ -28,6 +52,7 @@ export default function RootLayout({
   return (
     <html lang="vi" className="bg-background">
       <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
+        <SplashScreen />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
