@@ -96,9 +96,7 @@ export function Footer() {
               <InfoIcon className="h-4 w-4 text-neon-purple" />
             </div>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              <span className="font-semibold text-foreground">Lưu ý:</span> LTBank là hệ thống 
-              ngân hàng thực tế với đầy đủ chức năng, không phục vụ mục đích thương mại. 
-              Mọi bản quyền hệ thống thuộc sở hữu riêng (Closed-source).
+              <span className="font-semibold text-foreground">Lưu ý quan trọng:</span> LTBank là một dự án demo giáo dục được phát triển cho mục đích học tập và triển lãm kỹ thuật. Đây không phải là dịch vụ ngân hàng thực tế cũng không phục vụ bất kỳ mục đích thương mại nào.
             </p>
           </div>
         </motion.div>
